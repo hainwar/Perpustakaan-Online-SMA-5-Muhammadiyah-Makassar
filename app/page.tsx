@@ -23,59 +23,132 @@ import {
   Wrench,
   Cpu,
   Target,
+  Calendar,
 } from "lucide-react"
 import Image from "next/image"
 
-// Data struktur kelas dan mata pelajaran
+// Data struktur kelas dan mata pelajaran dengan semester
 const classData = {
   X: {
     name: "Kelas X",
-    subjects: [
-      "Matematika",
-      "Bahasa Indonesia",
-      "Bahasa Inggris",
-      "Fisika",
-      "Kimia",
-      "Biologi",
-      "Sejarah",
-      "Geografi",
-      "Ekonomi",
-      "Sosiologi",
-    ],
+    semesters: {
+      ganjil: {
+        name: "Semester Ganjil",
+        subjects: [
+          "Matematika Wajib",
+          "Bahasa Indonesia",
+          "Bahasa Inggris",
+          "Fisika",
+          "Kimia",
+          "Biologi",
+          "Sejarah Indonesia",
+          "Geografi",
+          "Ekonomi",
+          "Sosiologi",
+          "Pendidikan Agama",
+          "PKn",
+        ],
+      },
+      genap: {
+        name: "Semester Genap",
+        subjects: [
+          "Matematika Wajib",
+          "Bahasa Indonesia",
+          "Bahasa Inggris",
+          "Fisika",
+          "Kimia",
+          "Biologi",
+          "Sejarah Indonesia",
+          "Geografi",
+          "Ekonomi",
+          "Sosiologi",
+          "Pendidikan Agama",
+          "PKn",
+        ],
+      },
+    },
   },
   XI: {
     name: "Kelas XI",
-    subjects: [
-      "Matematika",
-      "Bahasa Indonesia",
-      "Bahasa Inggris",
-      "Fisika",
-      "Kimia",
-      "Biologi",
-      "Sejarah",
-      "Geografi",
-      "Ekonomi",
-      "Sosiologi",
-    ],
+    semesters: {
+      ganjil: {
+        name: "Semester Ganjil",
+        subjects: [
+          "Matematika Wajib",
+          "Matematika Peminatan",
+          "Bahasa Indonesia",
+          "Bahasa Inggris",
+          "Fisika",
+          "Kimia",
+          "Biologi",
+          "Sejarah Indonesia",
+          "Geografi",
+          "Ekonomi",
+          "Sosiologi",
+          "Pendidikan Agama",
+        ],
+      },
+      genap: {
+        name: "Semester Genap",
+        subjects: [
+          "Matematika Wajib",
+          "Matematika Peminatan",
+          "Bahasa Indonesia",
+          "Bahasa Inggris",
+          "Fisika",
+          "Kimia",
+          "Biologi",
+          "Sejarah Indonesia",
+          "Geografi",
+          "Ekonomi",
+          "Sosiologi",
+          "Pendidikan Agama",
+        ],
+      },
+    },
   },
   XII: {
     name: "Kelas XII",
-    subjects: [
-      "Matematika",
-      "Bahasa Indonesia",
-      "Bahasa Inggris",
-      "Fisika",
-      "Kimia",
-      "Biologi",
-      "Sejarah",
-      "Geografi",
-      "Ekonomi",
-      "Sosiologi",
-    ],
+    semesters: {
+      ganjil: {
+        name: "Semester Ganjil",
+        subjects: [
+          "Matematika Wajib",
+          "Matematika Peminatan",
+          "Bahasa Indonesia",
+          "Bahasa Inggris",
+          "Fisika",
+          "Kimia",
+          "Biologi",
+          "Sejarah Indonesia",
+          "Geografi",
+          "Ekonomi",
+          "Sosiologi",
+          "Persiapan UTBK",
+        ],
+      },
+      genap: {
+        name: "Semester Genap",
+        subjects: [
+          "Matematika Wajib",
+          "Matematika Peminatan",
+          "Bahasa Indonesia",
+          "Bahasa Inggris",
+          "Fisika",
+          "Kimia",
+          "Biologi",
+          "Sejarah Indonesia",
+          "Geografi",
+          "Ekonomi",
+          "Sosiologi",
+          "Persiapan UTBK",
+        ],
+      },
+    },
   },
 }
 
-// Data kategori tambahan
+// Data kategori tambahan (tetap sama)
 const additionalCategories = {
   "cerpen-sastra": {
     name: "Cerpen & Sastra",
@@ -251,22 +324,103 @@ const additionalCategories = {
   },
 }
 
-// Mock data untuk buku-buku dengan struktur yang lebih terorganisir
+// Mock data untuk buku-buku dengan semester
 const books = [
-  // Buku Kelas X, XI, XII (existing data)
+  // Buku Kelas X Semester Ganjil
   {
     id: 1,
-    title: "Matematika Wajib Kelas X",
+    title: "Matematika Wajib Kelas X Semester 1",
     author: "Tim Penulis Kemendikbud",
-    subject: "Matematika",
+    subject: "Matematika Wajib",
     class: "X",
-    description: "Buku teks matematika wajib untuk siswa SMA kelas X sesuai kurikulum merdeka",
+    semester: "ganjil",
+    description: "Buku teks matematika wajib untuk siswa SMA kelas X semester ganjil",
     cover: "/placeholder.svg?height=200&width=150",
     downloadUrl: "https://drive.google.com/file/d/example1",
     pages: 248,
     year: 2023,
   },
-  // Buku Kategori Tambahan
+  {
+    id: 2,
+    title: "Matematika Wajib Kelas X Semester 2",
+    author: "Tim Penulis Kemendikbud",
+    subject: "Matematika Wajib",
+    class: "X",
+    semester: "genap",
+    description: "Buku teks matematika wajib untuk siswa SMA kelas X semester genap",
+    cover: "/placeholder.svg?height=200&width=150",
+    downloadUrl: "https://drive.google.com/file/d/example2",
+    pages: 264,
+    year: 2023,
+  },
+  {
+    id: 3,
+    title: "Fisika Kelas X Semester 1",
+    author: "Dr. Budi Fisika",
+    subject: "Fisika",
+    class: "X",
+    semester: "ganjil",
+    description: "Konsep dasar fisika untuk siswa SMA kelas X semester ganjil",
+    cover: "/placeholder.svg?height=200&width=150",
+    downloadUrl: "https://drive.google.com/file/d/example3",
+    pages: 456,
+    year: 2023,
+  },
+  {
+    id: 4,
+    title: "Fisika Kelas X Semester 2",
+    author: "Dr. Budi Fisika",
+    subject: "Fisika",
+    class: "X",
+    semester: "genap",
+    description: "Lanjutan konsep fisika untuk siswa SMA kelas X semester genap",
+    cover: "/placeholder.svg?height=200&width=150",
+    downloadUrl: "https://drive.google.com/file/d/example4",
+    pages: 432,
+    year: 2023,
+  },
+  // Buku Kelas XI
+  {
+    id: 5,
+    title: "Matematika Peminatan Kelas XI Semester 1",
+    author: "Prof. Ahmad Matematika",
+    subject: "Matematika Peminatan",
+    class: "XI",
+    semester: "ganjil",
+    description: "Matematika peminatan untuk siswa SMA kelas XI semester ganjil",
+    cover: "/placeholder.svg?height=200&width=150",
+    downloadUrl: "https://drive.google.com/file/d/example5",
+    pages: 384,
+    year: 2023,
+  },
+  {
+    id: 6,
+    title: "Kimia Kelas XI Semester 2",
+    author: "Dr. Maria Kimia",
+    subject: "Kimia",
+    class: "XI",
+    semester: "genap",
+    description: "Studi mendalam tentang kimia untuk kelas XI semester genap",
+    cover: "/placeholder.svg?height=200&width=150",
+    downloadUrl: "https://drive.google.com/file/d/example6",
+    pages: 420,
+    year: 2023,
+  },
+  // Buku Kelas XII
+  {
+    id: 7,
+    title: "Persiapan UTBK Matematika Saintek",
+    author: "Tim UTBK Indonesia",
+    subject: "Persiapan UTBK",
+    class: "XII",
+    semester: "ganjil",
+    description: "Persiapan lengkap UTBK Matematika Saintek untuk kelas XII",
+    cover: "/placeholder.svg?height=200&width=150",
+    downloadUrl: "https://drive.google.com/file/d/example7",
+    pages: 512,
+    year: 2023,
+  },
+  // Buku Kategori Tambahan (tetap sama)
   {
     id: 11,
     title: "Kumpulan Cerpen Remaja Terbaik",
@@ -279,61 +433,14 @@ const books = [
     pages: 180,
     year: 2023,
   },
-  {
-    id: 12,
-    title: "7 Habits of Highly Effective Teens",
-    author: "Sean Covey",
-    subject: "Motivasi & Inspirasi",
-    class: "pengembangan-diri",
-    description: "Panduan pengembangan diri untuk remaja yang ingin sukses",
-    cover: "/placeholder.svg?height=200&width=150",
-    downloadUrl: "https://drive.google.com/file/d/example12",
-    pages: 256,
-    year: 2023,
-  },
-  {
-    id: 13,
-    title: "Panduan Keamanan Digital untuk Remaja",
-    author: "Tim Cyber Security Indonesia",
-    subject: "Keamanan Siber",
-    class: "literasi-digital",
-    description: "Belajar melindungi diri di dunia digital",
-    cover: "/placeholder.svg?height=200&width=150",
-    downloadUrl: "https://drive.google.com/file/d/example13",
-    pages: 164,
-    year: 2023,
-  },
-  {
-    id: 14,
-    title: "Metodologi Penelitian untuk Siswa SMA",
-    author: "Prof. Dr. Sugiyono",
-    subject: "Metodologi Penelitian",
-    class: "karya-ilmiah",
-    description: "Panduan lengkap membuat karya tulis ilmiah untuk siswa",
-    cover: "/placeholder.svg?height=200&width=150",
-    downloadUrl: "https://drive.google.com/file/d/example14",
-    pages: 320,
-    year: 2023,
-  },
-  {
-    id: 15,
-    title: "Komik Sains: Petualangan Fisika",
-    author: "Tim Komikus Edukasi",
-    subject: "Komik Sains",
-    class: "komik-edukasi",
-    description: "Belajar fisika dengan cara yang menyenangkan melalui komik",
-    cover: "/placeholder.svg?height=200&width=150",
-    downloadUrl: "https://drive.google.com/file/d/example15",
-    pages: 128,
-    year: 2023,
-  },
 ]
 
-type ViewType = "categories" | "subjects" | "books"
+type ViewType = "categories" | "semesters" | "subjects" | "books"
 
 export default function PerpustakaanOnline() {
   const [currentView, setCurrentView] = useState<ViewType>("categories")
   const [selectedCategory, setSelectedCategory] = useState<string>("")
+  const [selectedSemester, setSelectedSemester] = useState<string>("")
   const [selectedSubject, setSelectedSubject] = useState<string>("")
   const [searchTerm, setSearchTerm] = useState("")
 
@@ -342,15 +449,35 @@ export default function PerpustakaanOnline() {
       const matchesSearch =
         book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         book.author.toLowerCase().includes(searchTerm.toLowerCase())
+
+      // Untuk kategori kelas (X, XI, XII)
+      if (classData[selectedCategory as keyof typeof classData]) {
+        const matchesClass = book.class === selectedCategory
+        const matchesSemester = book.semester === selectedSemester
+        const matchesSubject = book.subject === selectedSubject
+        return matchesSearch && matchesClass && matchesSemester && matchesSubject
+      }
+
+      // Untuk kategori tambahan
       const matchesCategory = book.class === selectedCategory
       const matchesSubject = book.subject === selectedSubject
-
       return matchesSearch && matchesCategory && matchesSubject
     })
-  }, [searchTerm, selectedCategory, selectedSubject])
+  }, [searchTerm, selectedCategory, selectedSemester, selectedSubject])
 
   const handleCategorySelect = (categoryKey: string) => {
     setSelectedCategory(categoryKey)
+    // Jika kategori adalah kelas (X, XI, XII), tampilkan semester
+    if (classData[categoryKey as keyof typeof classData]) {
+      setCurrentView("semesters")
+    } else {
+      // Jika kategori tambahan, langsung ke subjects
+      setCurrentView("subjects")
+    }
+  }
+
+  const handleSemesterSelect = (semesterKey: string) => {
+    setSelectedSemester(semesterKey)
     setCurrentView("subjects")
   }
 
@@ -362,6 +489,14 @@ export default function PerpustakaanOnline() {
   const handleBackToCategories = () => {
     setCurrentView("categories")
     setSelectedCategory("")
+    setSelectedSemester("")
+    setSelectedSubject("")
+    setSearchTerm("")
+  }
+
+  const handleBackToSemesters = () => {
+    setCurrentView("semesters")
+    setSelectedSemester("")
     setSelectedSubject("")
     setSearchTerm("")
   }
@@ -387,6 +522,10 @@ export default function PerpustakaanOnline() {
         )
       }
     }
+    if (selectedSemester) {
+      const semesterName = selectedSemester === "ganjil" ? "Semester Ganjil" : "Semester Genap"
+      breadcrumbs.push(semesterName)
+    }
     if (selectedSubject) {
       breadcrumbs.push(selectedSubject)
     }
@@ -398,6 +537,15 @@ export default function PerpustakaanOnline() {
       return classData[selectedCategory as keyof typeof classData]
     }
     return additionalCategories[selectedCategory as keyof typeof additionalCategories]
+  }
+
+  const getCurrentSemesterData = () => {
+    if (classData[selectedCategory as keyof typeof classData] && selectedSemester) {
+      return classData[selectedCategory as keyof typeof classData].semesters[
+        selectedSemester as keyof typeof classData.X.semesters
+      ]
+    }
+    return null
   }
 
   return (
@@ -497,7 +645,7 @@ export default function PerpustakaanOnline() {
               <div className="text-center mb-8">
                 <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Kelas Akademik</h3>
                 <p className="text-gray-600 max-w-2xl mx-auto">
-                  Buku pelajaran sesuai kurikulum nasional untuk setiap jenjang kelas
+                  Buku pelajaran sesuai kurikulum nasional untuk setiap jenjang kelas dengan pembagian semester
                 </p>
               </div>
 
@@ -534,7 +682,7 @@ export default function PerpustakaanOnline() {
                           {classInfo.name}
                         </CardTitle>
                         <CardDescription className="text-sm sm:text-base text-gray-600 group-hover:text-gray-700 transition-colors">
-                          {classInfo.subjects.length} Mata Pelajaran
+                          2 Semester • {classInfo.semesters.ganjil.subjects.length} Mata Pelajaran
                         </CardDescription>
                       </CardHeader>
 
@@ -542,7 +690,7 @@ export default function PerpustakaanOnline() {
                         <Button
                           className={`w-full bg-gradient-to-r ${gradients[index]} hover:shadow-lg transition-all duration-300 text-white border-0 py-2 sm:py-3 text-sm sm:text-base font-semibold group-hover:scale-105`}
                         >
-                          Mulai Belajar
+                          Pilih Semester
                           <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 ml-2 group-hover:translate-x-1 transition-transform" />
                         </Button>
                       </CardContent>
@@ -632,8 +780,8 @@ export default function PerpustakaanOnline() {
           </div>
         )}
 
-        {/* Subjects View */}
-        {currentView === "subjects" && selectedCategory && (
+        {/* Semesters View */}
+        {currentView === "semesters" && selectedCategory && classData[selectedCategory as keyof typeof classData] && (
           <div>
             <div className="flex items-center mb-4 sm:mb-6 px-4">
               <Button variant="ghost" onClick={handleBackToCategories} className="text-sm sm:text-base">
@@ -644,40 +792,153 @@ export default function PerpustakaanOnline() {
 
             <div className="text-center mb-6 sm:mb-8 px-4">
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
-                {getCurrentCategoryData()?.name}
+                Pilih Semester - Kelas {selectedCategory}
               </h2>
               <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-                {getCurrentCategoryData()?.description || "Pilih topik untuk melihat koleksi buku yang tersedia"}
+                Pilih semester untuk mengakses buku pelajaran yang sesuai dengan periode pembelajaran
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto px-4">
+              {Object.entries(classData[selectedCategory as keyof typeof classData].semesters).map(
+                ([semesterKey, semesterInfo], index) => {
+                  const gradients = ["from-emerald-500 to-green-600", "from-orange-500 to-red-600"]
+                  const bgGradients = ["from-emerald-50 to-green-100", "from-orange-50 to-red-100"]
+                  const icons = [Calendar, Calendar]
+                  const IconComponent = icons[index]
+
+                  return (
+                    <Card
+                      key={semesterKey}
+                      className="group hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-1 sm:hover:-translate-y-2 bg-white/80 backdrop-blur-sm border-0 shadow-lg overflow-hidden relative"
+                      onClick={() => handleSemesterSelect(semesterKey)}
+                    >
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-br ${bgGradients[index]} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                      />
+
+                      <CardHeader className="text-center p-6 sm:p-8 relative z-10">
+                        <div
+                          className={`w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-r ${gradients[index]} rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                        >
+                          <IconComponent className="h-10 w-10 sm:h-12 sm:w-12 text-white" />
+                        </div>
+                        <CardTitle className="text-2xl sm:text-3xl font-bold mb-3 group-hover:text-gray-900 transition-colors">
+                          {semesterInfo.name}
+                        </CardTitle>
+                        <CardDescription className="text-base sm:text-lg text-gray-600 group-hover:text-gray-700 transition-colors">
+                          {semesterInfo.subjects.length} Mata Pelajaran
+                        </CardDescription>
+
+                        {/* Subject Preview */}
+                        <div className="mt-4 flex flex-wrap gap-2 justify-center">
+                          {semesterInfo.subjects.slice(0, 4).map((subject) => (
+                            <span
+                              key={subject}
+                              className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-medium"
+                            >
+                              {subject}
+                            </span>
+                          ))}
+                          {semesterInfo.subjects.length > 4 && (
+                            <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-medium">
+                              +{semesterInfo.subjects.length - 4} lainnya
+                            </span>
+                          )}
+                        </div>
+                      </CardHeader>
+
+                      <CardContent className="text-center pb-6 sm:pb-8 px-6 sm:px-8 relative z-10">
+                        <Button
+                          className={`w-full bg-gradient-to-r ${gradients[index]} hover:shadow-lg transition-all duration-300 text-white border-0 py-3 text-base sm:text-lg font-semibold group-hover:scale-105`}
+                          size="lg"
+                        >
+                          Lihat Mata Pelajaran
+                          <ChevronRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                        </Button>
+
+                        {/* Book Count */}
+                        <div className="mt-4 text-sm text-gray-500">
+                          {
+                            books.filter((book) => book.class === selectedCategory && book.semester === semesterKey)
+                              .length
+                          }{" "}
+                          buku tersedia
+                        </div>
+                      </CardContent>
+                    </Card>
+                  )
+                },
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Subjects View */}
+        {currentView === "subjects" && selectedCategory && (
+          <div>
+            <div className="flex items-center mb-4 sm:mb-6 px-4">
+              <Button
+                variant="ghost"
+                onClick={
+                  classData[selectedCategory as keyof typeof classData] ? handleBackToSemesters : handleBackToCategories
+                }
+                className="text-sm sm:text-base"
+              >
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                {classData[selectedCategory as keyof typeof classData] ? "Kembali ke Semester" : "Kembali ke Kategori"}
+              </Button>
+            </div>
+
+            <div className="text-center mb-6 sm:mb-8 px-4">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
+                {classData[selectedCategory as keyof typeof classData]
+                  ? `Mata Pelajaran Kelas ${selectedCategory} - ${getCurrentSemesterData()?.name}`
+                  : getCurrentCategoryData()?.name}
+              </h2>
+              <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+                {getCurrentCategoryData()?.description ||
+                  "Pilih mata pelajaran untuk melihat koleksi buku yang tersedia"}
               </p>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 px-4">
-              {getCurrentCategoryData()?.subjects.map((subject: string) => {
-                const bookCount = books.filter(
-                  (book) => book.class === selectedCategory && book.subject === subject,
-                ).length
-                return (
-                  <Card
-                    key={subject}
-                    className="hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-105"
-                    onClick={() => handleSubjectSelect(subject)}
-                  >
-                    <CardHeader className="text-center p-3 sm:p-4 lg:p-6">
-                      <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3">
-                        <BookOpen className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 text-green-600" />
-                      </div>
-                      <CardTitle className="text-sm sm:text-base lg:text-lg leading-tight">{subject}</CardTitle>
-                      <CardDescription className="text-xs sm:text-sm">{bookCount} buku tersedia</CardDescription>
-                    </CardHeader>
-                    <CardContent className="text-center pb-3 sm:pb-4 lg:pb-6 px-3 sm:px-4 lg:px-6">
-                      <Button size="sm" className="w-full text-xs sm:text-sm">
-                        Lihat Buku
-                        <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4 ml-1 sm:ml-2" />
-                      </Button>
-                    </CardContent>
-                  </Card>
-                )
-              })}
+              {(getCurrentSemesterData()?.subjects || getCurrentCategoryData()?.subjects || []).map(
+                (subject: string) => {
+                  const bookCount = books.filter((book) => {
+                    if (classData[selectedCategory as keyof typeof classData]) {
+                      return (
+                        book.class === selectedCategory &&
+                        book.semester === selectedSemester &&
+                        book.subject === subject
+                      )
+                    }
+                    return book.class === selectedCategory && book.subject === subject
+                  }).length
+
+                  return (
+                    <Card
+                      key={subject}
+                      className="hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-105"
+                      onClick={() => handleSubjectSelect(subject)}
+                    >
+                      <CardHeader className="text-center p-3 sm:p-4 lg:p-6">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3">
+                          <BookOpen className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 text-green-600" />
+                        </div>
+                        <CardTitle className="text-sm sm:text-base lg:text-lg leading-tight">{subject}</CardTitle>
+                        <CardDescription className="text-xs sm:text-sm">{bookCount} buku tersedia</CardDescription>
+                      </CardHeader>
+                      <CardContent className="text-center pb-3 sm:pb-4 lg:pb-6 px-3 sm:px-4 lg:px-6">
+                        <Button size="sm" className="w-full text-xs sm:text-sm">
+                          Lihat Buku
+                          <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4 ml-1 sm:ml-2" />
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  )
+                },
+              )}
             </div>
           </div>
         )}
@@ -688,14 +949,21 @@ export default function PerpustakaanOnline() {
             <div className="flex items-center mb-4 sm:mb-6 px-4">
               <Button variant="ghost" onClick={handleBackToSubjects} className="text-sm sm:text-base">
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Kembali ke Topik
+                Kembali ke Mata Pelajaran
               </Button>
             </div>
 
             <div className="text-center mb-6 sm:mb-8 px-4">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">{selectedSubject}</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
+                {selectedSubject}
+                {classData[selectedCategory as keyof typeof classData] && selectedSemester && (
+                  <span className="text-lg sm:text-xl text-gray-600 block mt-2">
+                    Kelas {selectedCategory} - {selectedSemester === "ganjil" ? "Semester Ganjil" : "Semester Genap"}
+                  </span>
+                )}
+              </h2>
               <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-                Koleksi buku digital untuk topik {selectedSubject}
+                Koleksi buku digital untuk mata pelajaran {selectedSubject}
               </p>
             </div>
 
@@ -716,6 +984,9 @@ export default function PerpustakaanOnline() {
             <div className="mb-4 sm:mb-6 px-4">
               <p className="text-sm sm:text-base text-gray-600">
                 Menampilkan {filteredBooks.length} buku untuk {selectedSubject}
+                {classData[selectedCategory as keyof typeof classData] && selectedSemester && (
+                  <span> - {selectedSemester === "ganjil" ? "Semester Ganjil" : "Semester Genap"}</span>
+                )}
               </p>
             </div>
 
@@ -738,9 +1009,20 @@ export default function PerpustakaanOnline() {
                   <CardContent className="p-3 sm:p-4 pt-0">
                     <div className="space-y-2 sm:space-y-3">
                       <div className="flex flex-wrap gap-1 sm:gap-2">
-                        <Badge variant="secondary" className="text-xs">
-                          {getCurrentCategoryData()?.name}
-                        </Badge>
+                        {classData[selectedCategory as keyof typeof classData] ? (
+                          <>
+                            <Badge variant="secondary" className="text-xs">
+                              Kelas {book.class}
+                            </Badge>
+                            <Badge variant="outline" className="text-xs">
+                              {book.semester === "ganjil" ? "Sem. Ganjil" : "Sem. Genap"}
+                            </Badge>
+                          </>
+                        ) : (
+                          <Badge variant="secondary" className="text-xs">
+                            {getCurrentCategoryData()?.name}
+                          </Badge>
+                        )}
                         <Badge variant="outline" className="text-xs">
                           {book.subject}
                         </Badge>
@@ -828,6 +1110,19 @@ export default function PerpustakaanOnline() {
 
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div className="flex items-center space-x-4">
+                      <div className="flex items-center space-x-2 text-sm text-gray-600">
+                        <BookOpen className="h-4 w-4 text-blue-600" />
+                        <span>15+ Tahun Pengalaman</span>
+                      </div>
+                      <div className="flex items-center space-x-2 text-sm text-gray-600">
+                        <GraduationCap className="h-4 w-4 text-purple-600" />
+                        <span>Magister Pendidikan</span>
+                      </div>
+                    </div>
+
+                    <div className="text-right">
+                      <div className="text-2xl font-bold text-gray-900">1000+</div>
+                      <div className="text-sm text-gray-600">Buku Digital Terkurasi</div>
                     </div>
                   </div>
                 </div>
@@ -864,9 +1159,9 @@ export default function PerpustakaanOnline() {
             <div>
               <h4 className="font-semibold mb-4">Kelas Akademik</h4>
               <ul className="space-y-2 text-sm text-gray-600">
-                <li>Kelas X (10 Mata Pelajaran)</li>
-                <li>Kelas XI (10 Mata Pelajaran)</li>
-                <li>Kelas XII (10 Mata Pelajaran)</li>
+                <li>Kelas X (2 Semester)</li>
+                <li>Kelas XI (2 Semester)</li>
+                <li>Kelas XII (2 Semester)</li>
               </ul>
             </div>
 
