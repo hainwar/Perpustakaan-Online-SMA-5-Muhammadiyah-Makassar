@@ -1110,19 +1110,6 @@ export default function PerpustakaanOnline() {
 
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div className="flex items-center space-x-4">
-                      <div className="flex items-center space-x-2 text-sm text-gray-600">
-                        <BookOpen className="h-4 w-4 text-blue-600" />
-                        <span>15+ Tahun Pengalaman</span>
-                      </div>
-                      <div className="flex items-center space-x-2 text-sm text-gray-600">
-                        <GraduationCap className="h-4 w-4 text-purple-600" />
-                        <span>Magister Pendidikan</span>
-                      </div>
-                    </div>
-
-                    <div className="text-right">
-                      <div className="text-2xl font-bold text-gray-900">1000+</div>
-                      <div className="text-sm text-gray-600">Buku Digital Terkurasi</div>
                     </div>
                   </div>
                 </div>
