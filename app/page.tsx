@@ -1175,7 +1175,7 @@ export default function PerpustakaanOnline() {
 
           <div className="border-t pt-6 mt-8 text-center text-sm text-gray-600">
             <p>
-              &copy; 2024 Perpustakaan Online Sekolah. Semua konten disediakan secara gratis untuk keperluan pendidikan.
+              &copy; 2025 Perpustakaan Online Sekolah. KKP Plus Universitas Muhammadiyah Makassar.
             </p>
           </div>
         </div>
