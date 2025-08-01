@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -444,6 +444,11 @@ export default function PerpustakaanOnline() {
   const [selectedSubject, setSelectedSubject] = useState<string>("")
   const [searchTerm, setSearchTerm] = useState("")
 
+  // Auto scroll to top when view changes
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [currentView, selectedCategory, selectedSemester, selectedSubject])
+
   const filteredBooks = useMemo(() => {
     return books.filter((book) => {
       const matchesSearch =
@@ -575,7 +580,10 @@ export default function PerpustakaanOnline() {
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-4 sm:py-6 lg:py-8">
+      <main
+        key={`${currentView}-${selectedCategory}-${selectedSemester}-${selectedSubject}`}
+        className="container mx-auto px-4 py-4 sm:py-6 lg:py-8"
+      >
         {/* Breadcrumb */}
         <div className="flex items-center space-x-2 text-sm text-gray-600 mb-6">
           {getBreadcrumb().map((crumb, index) => (
@@ -609,20 +617,13 @@ export default function PerpustakaanOnline() {
             </div>
 
             {/* Modern Stats Section */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12 lg:mb-16 max-w-5xl mx-auto px-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12 lg:mb-16 max-w-4xl mx-auto px-4">
               <div className="text-center p-4 sm:p-6 bg-white/60 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-white/20">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg sm:rounded-xl flex items-center justify-center mx-auto mb-2 sm:mb-3">
                   <BookOpen className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                 </div>
-                <div className="text-xl sm:text-2xl font-bold text-gray-900">1000+</div>
+                <div className="text-xl sm:text-2xl font-bold text-gray-900">200+</div>
                 <div className="text-sm sm:text-base text-gray-600">Buku Digital</div>
-              </div>
-              <div className="text-center p-4 sm:p-6 bg-white/60 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-white/20">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-lg sm:rounded-xl flex items-center justify-center mx-auto mb-2 sm:mb-3">
-                  <Users className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
-                </div>
-                <div className="text-xl sm:text-2xl font-bold text-gray-900">25K+</div>
-                <div className="text-sm sm:text-base text-gray-600">Pengguna</div>
               </div>
               <div className="text-center p-4 sm:p-6 bg-white/60 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-white/20">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg sm:rounded-xl flex items-center justify-center mx-auto mb-2 sm:mb-3">
@@ -635,8 +636,8 @@ export default function PerpustakaanOnline() {
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-orange-500 to-red-600 rounded-lg sm:rounded-xl flex items-center justify-center mx-auto mb-2 sm:mb-3">
                   <Target className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                 </div>
-                <div className="text-xl sm:text-2xl font-bold text-gray-900">100+</div>
-                <div className="text-sm sm:text-base text-gray-600">Mata Pelajaran</div>
+                <div className="text-xl sm:text-2xl font-bold text-gray-900">Tersedia</div>
+                <div className="text-sm sm:text-base text-gray-600">Pilihan Mata Pelajaran</div>
               </div>
             </div>
 
@@ -760,7 +761,7 @@ export default function PerpustakaanOnline() {
                 Siap Mengembangkan Potensi Diri?
               </h3>
               <p className="text-blue-100 mb-4 sm:mb-6 text-sm sm:text-base lg:text-lg">
-                Dengan 13 kategori lengkap dan ribuan buku berkualitas, wujudkan impian belajar tanpa batas
+                Dengan 13 kategori lengkap dan koleksi buku berkualitas, wujudkan impian belajar tanpa batas
               </p>
               <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center items-center">
                 <div className="flex items-center space-x-2 text-blue-100 text-sm sm:text-base">
@@ -769,7 +770,7 @@ export default function PerpustakaanOnline() {
                 </div>
                 <div className="flex items-center space-x-2 text-blue-100 text-sm sm:text-base">
                   <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                  <span>Akses Selamanya</span>
+                  <span>Akses Mudah</span>
                 </div>
                 <div className="flex items-center space-x-2 text-blue-100 text-sm sm:text-base">
                   <div className="w-2 h-2 bg-green-400 rounded-full"></div>
@@ -777,6 +778,73 @@ export default function PerpustakaanOnline() {
                 </div>
               </div>
             </div>
+
+            {/* Kepala Perpustakaan Section - Hanya di halaman utama */}
+            <section className="bg-gradient-to-r from-slate-50 to-gray-100 py-12 lg:py-16 mt-16 rounded-2xl">
+              <div className="container mx-auto px-4">
+                <div className="max-w-6xl mx-auto">
+                  <div className="text-center mb-8 lg:mb-12">
+                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                      Sambutan Kepala Perpustakaan
+                    </h3>
+                    <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"></div>
+                  </div>
+
+                  <div className="bg-white rounded-2xl lg:rounded-3xl shadow-xl overflow-hidden">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                      {/* Foto Kepala Perpustakaan */}
+                      <div className="relative h-64 sm:h-80 lg:h-96 bg-gradient-to-br from-blue-100 to-indigo-200 overflow-hidden">
+                        <Image
+                          src="/kepala-perpus.jpeg"
+                          alt="Kepala Perpustakaan SMA 5 Muhammadiyah Makassar"
+                          fill
+                          className="object-cover object-center"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                        {/* Decorative elements */}
+                        <div className="absolute top-8 left-8 w-16 h-16 bg-white/20 rounded-full"></div>
+                        <div className="absolute bottom-8 right-8 w-12 h-12 bg-white/30 rounded-full"></div>
+                        <div className="absolute top-1/2 right-12 w-8 h-8 bg-white/25 rounded-full"></div>
+                      </div>
+
+                      {/* Teks Sambutan */}
+                      <div className="p-6 sm:p-8 lg:p-12 flex flex-col justify-center">
+                        <div className="mb-6">
+                          <h4 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
+                            Dr. Musrial Arif Abadi, S.Kom., M.T
+                          </h4>
+                          <p className="text-blue-600 font-semibold text-sm sm:text-base lg:text-lg mb-4">
+                            Kepala Perpustakaan SMA 5 Muhammadiyah Makassar
+                          </p>
+                          <div className="w-16 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 mb-6"></div>
+                        </div>
+
+                        <blockquote className="text-gray-700 text-sm sm:text-base lg:text-lg leading-relaxed mb-6 italic">
+                          "Selamat datang di Perpustakaan Digital SMA 5 Muhammadiyah Makassar. Kami berkomitmen untuk
+                          menyediakan akses literasi yang mudah dan berkualitas bagi seluruh siswa dan guru. Dengan
+                          koleksi digital yang terus berkembang, mari kita wujudkan generasi yang cerdas, berkarakter,
+                          dan siap menghadapi tantangan masa depan."
+                        </blockquote>
+
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                          <div className="flex items-center space-x-4"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Quote highlight */}
+                  <div className="text-center mt-8 lg:mt-12">
+                    <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full text-white shadow-lg">
+                      <BookOpen className="h-5 w-5 mr-2" />
+                      <span className="font-semibold text-sm sm:text-base">
+                        "Membaca adalah Jendela Dunia, Digital adalah Masa Depan"
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
         )}
 
@@ -1063,72 +1131,6 @@ export default function PerpustakaanOnline() {
         )}
       </main>
 
-      {/* Kepala Perpustakaan Section */}
-      <section className="bg-gradient-to-r from-slate-50 to-gray-100 py-12 lg:py-16 mt-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-8 lg:mb-12">
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-                Sambutan Kepala Perpustakaan
-              </h3>
-              <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"></div>
-            </div>
-
-            <div className="bg-white rounded-2xl lg:rounded-3xl shadow-xl overflow-hidden">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-                {/* Foto Kepala Perpustakaan */}
-                <div className="relative h-64 sm:h-80 lg:h-96 bg-gradient-to-br from-blue-100 to-indigo-200">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center shadow-2xl">
-                      <Users className="h-16 w-16 sm:h-20 sm:w-20 lg:h-24 lg:w-24 text-white" />
-                    </div>
-                  </div>
-                  {/* Decorative elements */}
-                  <div className="absolute top-8 left-8 w-16 h-16 bg-white/20 rounded-full"></div>
-                  <div className="absolute bottom-8 right-8 w-12 h-12 bg-white/30 rounded-full"></div>
-                  <div className="absolute top-1/2 right-12 w-8 h-8 bg-white/25 rounded-full"></div>
-                </div>
-
-                {/* Teks Sambutan */}
-                <div className="p-6 sm:p-8 lg:p-12 flex flex-col justify-center">
-                  <div className="mb-6">
-                    <h4 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
-                      Dra. Siti Nurhaliza, M.Pd
-                    </h4>
-                    <p className="text-blue-600 font-semibold text-sm sm:text-base lg:text-lg mb-4">
-                      Kepala Perpustakaan SMA 5 Muhammadiyah Makassar
-                    </p>
-                    <div className="w-16 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 mb-6"></div>
-                  </div>
-
-                  <blockquote className="text-gray-700 text-sm sm:text-base lg:text-lg leading-relaxed mb-6 italic">
-                    "Selamat datang di Perpustakaan Digital SMA 5 Muhammadiyah Makassar. Kami berkomitmen untuk
-                    menyediakan akses literasi yang mudah dan berkualitas bagi seluruh siswa dan guru. Dengan koleksi
-                    digital yang terus berkembang, mari kita wujudkan generasi yang cerdas, berkarakter, dan siap
-                    menghadapi tantangan masa depan."
-                  </blockquote>
-
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                    <div className="flex items-center space-x-4">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Quote highlight */}
-            <div className="text-center mt-8 lg:mt-12">
-              <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full text-white shadow-lg">
-                <BookOpen className="h-5 w-5 mr-2" />
-                <span className="font-semibold text-sm sm:text-base">
-                  "Membaca adalah Jendela Dunia, Digital adalah Masa Depan"
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer className="bg-white border-t mt-16">
         <div className="container mx-auto px-4 py-8">
@@ -1139,7 +1141,7 @@ export default function PerpustakaanOnline() {
                 <span className="font-bold text-lg">Perpustakaan Online</span>
               </div>
               <p className="text-gray-600 text-sm">
-                Platform digital terlengkap untuk mengakses koleksi buku berkualitas secara gratis dan legal.
+                Platform Perpustakaan digital untuk mengakses koleksi buku berkualitas secara gratis dan legal.
               </p>
             </div>
 
@@ -1174,9 +1176,7 @@ export default function PerpustakaanOnline() {
           </div>
 
           <div className="border-t pt-6 mt-8 text-center text-sm text-gray-600">
-            <p>
-              &copy; 2025 Perpustakaan Online Sekolah. KKP Plus Universitas Muhammadiyah Makassar.
-            </p>
+            <p>&copy; 2025 Perpustakaan Online Sekolah. KKP Plus Universitas Muhammadiyah Makassar.</p>
           </div>
         </div>
       </footer>
