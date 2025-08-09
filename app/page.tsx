@@ -286,6 +286,7 @@ function getDrivePreviewUrl(url: string | undefined): string | null {
 
 // Mock data buku (cover pakai placeholder dengan query)
 const books: Book[] = [
+
   // Kelas X
   {
     id: 1,
@@ -438,6 +439,20 @@ const books: Book[] = [
     downloadUrl: "https://drive.google.com/file/d/1WApL79iVudsYAlNms4nKcUXbbJfeQGfw/view?usp=sharing",
     pages: 264,
     year: 2017,
+  },
+
+  // Kelas XI
+  {
+    id: 1,
+    title: "Matematika Kelas XI",
+    author: "Dicky Susanto Savitri K. Sihombing Marianna Magdalena Radjawane Yulian Candra Daniel Sinambelab.",
+    subject: "Matematika Wajib",
+    class: "XI",
+    description: "Buku Matematika untuk SMA/MA Kelas X",
+    cover: "/cov-mat-xi.png",
+    downloadUrl: "https://drive.google.com/file/d/1bktjTIRMKxOCfvyVS8pAahRcm9Swkxf_/view?usp=sharing",
+    pages: 168,
+    year: 2021,
   },
 
 
@@ -740,7 +755,7 @@ export default function PerpustakaanOnline() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                       <div className="relative h-64 sm:h-80 lg:h-96 bg-gradient-to-br from-blue-100 to-indigo-200 overflow-hidden">
                         <Image
-                          src="/placeholder.svg?height=600&width=800"
+                          src="/putri.JPG"
                           alt="Kepala Perpustakaan SMA 5 Muhammadiyah Makassar"
                           fill
                           className="object-cover object-center"
@@ -753,7 +768,7 @@ export default function PerpustakaanOnline() {
                       </div>
                       <div className="p-6 sm:p-8 lg:p-12 flex flex-col justify-center">
                         <div className="mb-6">
-                          <h4 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2">Dr. Musrial Arif Abadi, S.Kom., M.T</h4>
+                          <h4 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2">Putri Suci Ramadani</h4>
                           <p className="text-blue-600 font-semibold text-sm sm:text-base lg:text-lg mb-4">Kepala Perpustakaan SMA 5 Muhammadiyah Makassar</p>
                           <div className="w-16 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 mb-6" />
                         </div>
