@@ -755,7 +755,7 @@ export default function PerpustakaanOnline() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                       <div className="relative h-64 sm:h-80 lg:h-96 bg-gradient-to-br from-blue-100 to-indigo-200 overflow-hidden">
                         <Image
-                          src="/putri.JPG"
+                          src="/putrii.png"
                           alt="Kepala Perpustakaan SMA 5 Muhammadiyah Makassar"
                           fill
                           className="object-cover object-center"
